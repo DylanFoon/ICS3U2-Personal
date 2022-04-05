@@ -35,6 +35,7 @@ public class String_Manipulation {
 		System.out.println();
 		TheBesandThes(phrase);
 		System.out.println();
+		System.out.println("        Stack: ");
 		stack(phrase);
 	}// End main
 	
