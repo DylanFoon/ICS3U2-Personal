@@ -16,6 +16,9 @@ public class String_Manipulation {
 			if (space == ' ') {
 				cnt++;
 			}
+			if (phrase.charAt(i)==' ' && phrase.charAt(i+1)==' ') {
+				cnt--;
+			}
 		}
 		System.out.println("Your message has been converted!");
 		System.out.println("	Your phrase in uppercase: " + phrase.toUpperCase());
