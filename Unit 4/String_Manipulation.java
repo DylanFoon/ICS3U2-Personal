@@ -1,5 +1,4 @@
 import java.util.Scanner;
-
 public class String_Manipulation {
 	public static int cnt = 1;
 	public static int cnt2 = 0;
@@ -11,6 +10,7 @@ public class String_Manipulation {
 		System.out.println("	 Welcome to Change That Message!");
 		System.out.println("Enter a phrase (up to 6 words): ");
 		String phrase = scanner.nextLine();
+		phrase = phrase.trim();
 		for (int i = 0;i<phrase.length();i++) {
 			space = phrase.charAt(i);
 			if (space == ' ') {
@@ -22,9 +22,12 @@ public class String_Manipulation {
 		}
 		System.out.println("Your message has been converted!");
 		System.out.println("	Your phrase in uppercase: " + phrase.toUpperCase());
+		System.out.println();
 		System.out.println("	Your phrase in lowercase: " + phrase.toLowerCase());
+		System.out.println();
 		System.out.println("	# of Words: " + cnt);
-		otherLetter(phrase);
+		System.out.println();
+		System.out.println("	Mix #1: " + otherLetter(phrase));
 		for (int i = 0;i<phrase.length();i++) {
 			letter = phrase.charAt(i);
 			if (letter=='a'|| letter=='i'|| letter=='e'|| letter=='o'||letter=='u') {
@@ -33,10 +36,13 @@ public class String_Manipulation {
 		}
 		System.out.println();
 		System.out.println("	Number of Vowels: " + cnt2);
-		otherLetter2(phrase);
-		reverse(phrase);
 		System.out.println();
-		TheBesandThes(phrase);
+		System.out.println("	Mix #2 (Vowels are uppercase): " + otherLetter2(phrase));
+		System.out.println();
+		System.out.print("        Phrase in reverse: " + reverse(phrase));
+		System.out.println();
+		System.out.println();
+		System.out.println("	The number of \"be's\" and \"the's\" in your statement is: " + TheBesandThes(phrase));
 		System.out.println();
 		System.out.println("        Stack: ");
 		stack(phrase);
@@ -67,44 +73,46 @@ public class String_Manipulation {
 
 	} //End Welcome
 	
-	public static void otherLetter(String a) {
+	public static String otherLetter(String a) {
+		StringBuilder sb = new StringBuilder(a.length());
 		char isTwo;
-		System.out.print("	Mix #1: ");
 		for (int i = 0;i<a.length();i++) {
 			isTwo = a.charAt(i);
 			char upper = Character.toUpperCase(isTwo);
 			char lower = Character.toLowerCase(isTwo);
 			if (i%2==0) {
-				System.out.print(upper);
+				sb.append(upper);
 			} else {
-				System.out.print(lower);
+				sb.append(lower);
 			}
 		}
+		return sb.toString();
 	}//End otherLetter
 	
-	public static void otherLetter2(String a) {
+	public static String otherLetter2(String a) {
+		StringBuilder sb = new StringBuilder(a.length());
 		char isTwo;
-		System.out.print("	Mix #2: ");
 		for (int i = 0;i<a.length();i++) {
 			isTwo = a.charAt(i);
 			char upper = Character.toUpperCase(isTwo);
 			char lower = Character.toLowerCase(isTwo);
 			if (isTwo=='a'|| isTwo=='i'|| isTwo=='e'|| isTwo=='o'||isTwo=='u') {
-				System.out.print(upper);
+				sb.append(upper);
 			} else {
-				System.out.print(lower);
+				sb.append(lower);
 			}
 		}
+		return sb.toString();
 	}//End otherLetter2
 	
-	public static void reverse(String a) {
+	public static String reverse(String a) {
+		StringBuilder sb = new StringBuilder(a.length());
 		int cnt3 = a.length()-1;
-		System.out.println();
-		System.out.print("	Phrase in reverse: ");
 			while (cnt3 >= 0) {
-				System.out.print(a.charAt(cnt3));
+				sb.append(a.charAt(cnt3));
 				cnt3--;
 			}
+		return sb.toString();
 		} //ENd reverse
 	
 	public static void stack(String a) {
@@ -137,7 +145,7 @@ public class String_Manipulation {
 		}
 	} //End stack
 	
-	public static void TheBesandThes(String a) {
+	public static int TheBesandThes(String a) {
 		int cnt4 = 0;
 		int i = 0;
 		int j = 0;
@@ -154,7 +162,7 @@ public class String_Manipulation {
 			}
 			i++;
 		}
-		System.out.println("	The number of \"be's\" and \"the's\" in your phrase is: " + (cnt4));
+		return cnt4;
 	} // End TheBesandThes
 	
 		
