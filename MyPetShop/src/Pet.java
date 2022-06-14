@@ -1,5 +1,6 @@
 import java.io.File;
 import java.io.IOException;
+import java.util.Comparator;
 import java.util.Scanner;
 
 public class Pet {
@@ -59,4 +60,31 @@ public class Pet {
 	public void adjustAge(int age) {
 		this.age = age;
 	}
+	public String getType() {
+		return type;
+	}
+	public String toString() {
+		return String.format("%-10s%-15s%-20s%-5s$%-10.2f%-15s",getType(),getName(),getBreed(),getAge(),getPrice(), doesExtra()?"is Special":"Is not Special");
+}
+	public static Comparator<Pet> petComparator = new Comparator<Pet>() {
+
+		public int compare(Pet p1,Pet p2) {
+		   String petName1 = p1.getName().toUpperCase();
+		   String petName2 = p2.getName().toUpperCase();
+
+
+		   return petName1.compareTo(petName2);
+	    }
+	};
+	public static Comparator<Pet> petprice = new Comparator<Pet>() {
+
+		public int compare(Pet p1, Pet p2) {
+
+		   double price1 = p1.getPrice();
+		   double price2 = p2.getPrice();
+
+		   /*For ascending order*/
+		   return (int) (price1-price2);
+
+	   }};
 }
