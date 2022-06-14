@@ -161,8 +161,27 @@ public class petShopMain {
 		String selectionString = selectionObject.toString();
 		return selectionString;
 	}//end ShowPets	
+	
+	public static String showPetsPrice(){
+		JFrame frame = new JFrame();
+		frame.setAlwaysOnTop(true);
 
+		Object[] players = {"All","Dogs","Cats","Fish","Turtles"};
+		Object selectionObject = JOptionPane.showInputDialog(frame, "Your Choice", "What would you like to see?", JOptionPane.PLAIN_MESSAGE, null, players, players[0]);
+		String selectionString = selectionObject.toString();
+		return selectionString;
+	}//end ShowPetsPrice
 
+	public static String showPetsNames(){
+		JFrame frame = new JFrame();
+		frame.setAlwaysOnTop(true);
+
+		Object[] players = {"All","Dogs","Cats","Fish","Turtles"};
+		Object selectionObject = JOptionPane.showInputDialog(frame, "Your Choice", "What would you like to see?", JOptionPane.PLAIN_MESSAGE, null, players, players[0]);
+		String selectionString = selectionObject.toString();
+		return selectionString;
+	}//end ShowPetsNames
+	
 	public static void selection() {
 		String choice = showMenu();
 		switch(choice) {
@@ -226,20 +245,15 @@ public class petShopMain {
 			break;
 		case"View All Animals Sorted by Price":
 			petPrice();
-			menu();
-			for(Pet p:pets) {
-				System.out.println(p);
-			}
+			petPrices();
 			break;
 		case"View All Animals Sorted in Alphabetical Order":
 			petLetter();
-			menu();
-			for(Pet p:pets) {
-				System.out.println(p);
-			}
+			alphabetical();
 		}
 			
 	}
+	
 	public static void menu() {
 		System.out.printf("%-10s%-15s%-20s%-5s%-12s%-15s","Animal","Name","Breed","Age","Price","Extra");
 		System.out.println();
@@ -251,6 +265,7 @@ public class petShopMain {
 		Collections.sort(prices);
 		return prices;
 	}
+	
 	public static void threePrices() {
 		pricesSort();
 		expensivePrices = new ArrayList<Double>(prices.subList(prices.size() -3, prices.size()));
@@ -268,6 +283,7 @@ public class petShopMain {
 			System.out.println(c);
 		}
 	}
+	
 	public static void petsSort() {
 		threePrices();
 		for(Pet p:pets) {
@@ -289,9 +305,11 @@ public class petShopMain {
 	public static void petLetter() {
 		Collections.sort(pets,Pet.petComparator);
 	}
+	
 	public static void petPrice() {
 		Collections.sort(pets,Pet.petprice);
 	}
+	
 	public static void agesSort() {
 		Collections.sort(ages);
 		threeOldest = new ArrayList<Integer>(ages.subList(ages.size() -3, ages.size()));
@@ -315,6 +333,78 @@ public class petShopMain {
 	public static void printOldest() {
 		for(Pet o:oldest) {
 			System.out.println(o);
+		}
+	}
+	
+	public static void petPrices() {
+		Collections.sort(dogs,Dog.dogprice);
+		Collections.sort(cats,Cat.catprice);
+		Collections.sort(fishh,Fish.fishprice);
+		Collections.sort(turtles,Turtle.turtleprice);
+		String petPrices = showPetsPrice();
+		menu();
+		switch(petPrices) {
+		case"All":
+		for(Pet p:pets) {
+			System.out.println(p);
+		}
+		break;
+		case"Dogs":
+			for(Dog d:dogs) {
+				System.out.println(d);
+			}
+			break;
+		case"Cats":
+			for(Cat c:cats) {
+				System.out.println(c);
+			}
+			break;
+		case"Fish":
+			for(Fish f:fishh) {
+				System.out.println(f);
+			}
+			break;
+		case"Turtles":
+			for(Turtle t:turtles) {
+				System.out.println(t);
+			}
+			break;
+		}
+	}
+
+	public static void alphabetical() {
+		Collections.sort(dogs,Dog.dogComparator);
+		Collections.sort(cats,Cat.catComparator);
+		Collections.sort(fishh,Fish.fishComparator);
+		Collections.sort(turtles,Turtle.turtleComparator);
+		String petNames = showPetsNames();
+		menu();
+		switch(petNames) {
+		case"All":
+		for(Pet p:pets) {
+			System.out.println(p);
+		}
+		break;
+		case"Dogs":
+			for(Dog d:dogs) {
+				System.out.println(d);
+			}
+			break;
+		case"Cats":
+			for(Cat c:cats) {
+				System.out.println(c);
+			}
+			break;
+		case"Fish":
+			for(Fish f:fishh) {
+				System.out.println(f);
+			}
+			break;
+		case"Turtles":
+			for(Turtle t:turtles) {
+				System.out.println(t);
+			}
+			break;
 		}
 	}
 }
